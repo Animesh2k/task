@@ -1,0 +1,235 @@
+{
+  "project_info": {
+    "project_number": "603919049610",
+    "firebase_url": "https://weavers-dev-default-rtdb.firebaseio.com",
+    "project_id": "weavers-dev",
+    "storage_bucket": "weavers-dev.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:603919049610:android:da52dae82498c7d86fde73",
+        "android_client_info": {
+          "package_name": "app.rae.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "603919049610-msocksel9097supanj2a5eh3bj75amkt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.rae.com",
+            "certificate_hash": "c551cfbf0e6526531133cfb878585a62d392265a"
+          }
+        },
+        {
+          "client_id": "603919049610-cb8eovefun99bj7vdddg5lj7nd59685r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdGY18FXV5rRt-HqFFsi9DTsHzlfv84SA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "603919049610-cb8eovefun99bj7vdddg5lj7nd59685r.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "603919049610-2iskfh2g7br4fmani8pqtid972jrr81s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "omera.app.com"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:603919049610:android:83f542ba403633926fde73",
+        "android_client_info": {
+          "package_name": "app.vd.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "603919049610-cb8eovefun99bj7vdddg5lj7nd59685r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdGY18FXV5rRt-HqFFsi9DTsHzlfv84SA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "603919049610-cb8eovefun99bj7vdddg5lj7nd59685r.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "603919049610-2iskfh2g7br4fmani8pqtid972jrr81s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "omera.app.com"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:603919049610:android:8b5dd738d146cc986fde73",
+        "android_client_info": {
+          "package_name": "com.example.chat_bot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "603919049610-cb8eovefun99bj7vdddg5lj7nd59685r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdGY18FXV5rRt-HqFFsi9DTsHzlfv84SA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "603919049610-cb8eovefun99bj7vdddg5lj7nd59685r.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "603919049610-2iskfh2g7br4fmani8pqtid972jrr81s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "omera.app.com"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:603919049610:android:95f3df292338d5bd6fde73",
+        "android_client_info": {
+          "package_name": "com.example.weavers_flutter_base_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "603919049610-cb8eovefun99bj7vdddg5lj7nd59685r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdGY18FXV5rRt-HqFFsi9DTsHzlfv84SA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "603919049610-cb8eovefun99bj7vdddg5lj7nd59685r.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "603919049610-2iskfh2g7br4fmani8pqtid972jrr81s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "omera.app.com"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:603919049610:android:a0402726361bb5b56fde73",
+        "android_client_info": {
+          "package_name": "omera.app.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "603919049610-cb8eovefun99bj7vdddg5lj7nd59685r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdGY18FXV5rRt-HqFFsi9DTsHzlfv84SA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "603919049610-cb8eovefun99bj7vdddg5lj7nd59685r.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "603919049610-2iskfh2g7br4fmani8pqtid972jrr81s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "omera.app.com"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:603919049610:android:38bf4da705cee5a96fde73",
+        "android_client_info": {
+          "package_name": "weavers.web.flutter.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "603919049610-cb8eovefun99bj7vdddg5lj7nd59685r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdGY18FXV5rRt-HqFFsi9DTsHzlfv84SA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "603919049610-cb8eovefun99bj7vdddg5lj7nd59685r.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "603919049610-2iskfh2g7br4fmani8pqtid972jrr81s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "omera.app.com"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

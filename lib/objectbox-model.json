@@ -1,0 +1,54 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:397800334642971565",
+      "lastPropertyId": "5:1954735622199091548",
+      "name": "WeatherCache",
+      "properties": [
+        {
+          "id": "1:2584343409328265443",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:5555398779613965564",
+          "name": "locationKey",
+          "indexId": "1:7518181020090631518",
+          "type": 9,
+          "flags": 2080
+        },
+        {
+          "id": "3:7393771419907871980",
+          "name": "cityName",
+          "type": 9
+        },
+        {
+          "id": "4:8384074433482636494",
+          "name": "jsonWeatherData",
+          "type": 9
+        },
+        {
+          "id": "5:1954735622199091548",
+          "name": "timestamp",
+          "type": 6
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "1:397800334642971565",
+  "lastIndexId": "1:7518181020090631518",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}
