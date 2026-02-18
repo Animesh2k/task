@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     // START: FlutterFire Configuration
     id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
     // END: FlutterFire Configuration
     id("kotlin-android")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
@@ -9,7 +10,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.weavers_flutter_base_project"
+    namespace = "weavers.dev.app"
     compileSdk = 36  // Required for playx_version_update
     ndkVersion = flutter.ndkVersion
 
@@ -24,7 +25,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.weavers_flutter_base_project"
+        applicationId = "weavers.dev.app"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
@@ -44,4 +45,13 @@ android {
 
 flutter {
     source = "../.."
+}
+
+
+dependencies {
+    // Required for Install Referrer tracking (Singular attribution)
+    implementation("com.android.installreferrer:installreferrer:2.2")
+
+    // Required for App Set ID (Google Play services)
+    implementation("com.google.android.gms:play-services-appset:16.0.0")
 }

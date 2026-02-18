@@ -196,6 +196,42 @@
     },
     {
       "client_info": {
+        "mobilesdk_app_id": "1:603919049610:android:713510fd3e2581416fde73",
+        "android_client_info": {
+          "package_name": "weavers.dev.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "603919049610-cb8eovefun99bj7vdddg5lj7nd59685r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdGY18FXV5rRt-HqFFsi9DTsHzlfv84SA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "603919049610-cb8eovefun99bj7vdddg5lj7nd59685r.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "603919049610-2iskfh2g7br4fmani8pqtid972jrr81s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "omera.app.com"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:603919049610:android:38bf4da705cee5a96fde73",
         "android_client_info": {
           "package_name": "weavers.web.flutter.dev"

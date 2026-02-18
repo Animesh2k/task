@@ -9,6 +9,31 @@ PODS:
     - GoogleUtilities/Environment (~> 8.0)
     - GoogleUtilities/UserDefaults (~> 8.0)
     - PromisesObjC (~> 2.4)
+  - Bolts (1.9.1):
+    - Bolts/AppLinks (= 1.9.1)
+    - Bolts/Tasks (= 1.9.1)
+  - Bolts/AppLinks (1.9.1):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.9.1)
+  - Facebook-iOS-SDK (4.38.0):
+    - Bolts (~> 1.9)
+    - Facebook-iOS-SDK/CoreKit (= 4.38.0)
+    - Facebook-iOS-SDK/MarketingKit (= 4.38.0)
+  - Facebook-iOS-SDK/CoreKit (4.38.0):
+    - Bolts (~> 1.9)
+    - FBSDKCoreKit
+  - Facebook-iOS-SDK/MarketingKit (4.38.0):
+    - Bolts (~> 1.9)
+    - Facebook-iOS-SDK/CoreKit
+    - FBSDKMarketingKit
+  - FBSDKCoreKit (7.0.1):
+    - FBSDKCoreKit/Basics (= 7.0.1)
+    - FBSDKCoreKit/Core (= 7.0.1)
+  - FBSDKCoreKit/Basics (7.0.1)
+  - FBSDKCoreKit/Core (7.0.1):
+    - FBSDKCoreKit/Basics
+  - FBSDKMarketingKit (7.0.0):
+    - FBSDKCoreKit (~> 7.0.0)
   - Firebase/Auth (12.8.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 12.8.0)
@@ -207,6 +232,7 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
+  - Facebook-iOS-SDK
   - firebase_analytics (from `.symlinks/plugins/firebase_analytics/ios`)
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
@@ -229,6 +255,10 @@ SPEC REPOS:
   trunk:
     - AppAuth
     - AppCheckCore
+    - Bolts
+    - Facebook-iOS-SDK
+    - FBSDKCoreKit
+    - FBSDKMarketingKit
     - Firebase
     - FirebaseAnalytics
     - FirebaseAppCheckInterop
@@ -293,6 +323,10 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AppAuth: 1c1a8afa7e12f2ec3a294d9882dfa5ab7d3cb063
   AppCheckCore: cc8fd0a3a230ddd401f326489c99990b013f0c4f
+  Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
+  Facebook-iOS-SDK: 9077b67c4178ea46c62997bcf2b6314ca6555440
+  FBSDKCoreKit: 9cc05bec0568a5955c82eb59ae95da0fe125b88d
+  FBSDKMarketingKit: 3d5736f9bbfcf7deae1e236f746712c2b6730ae5
   Firebase: 9a58fdbc9d8655ed7b79a19cf9690bb007d3d46d
   firebase_analytics: b5a19eaf3e4bf4187b0815ef4850b8916e2bc549
   firebase_auth: e9031a1dbe04a90d98e8d11ff2302352a1c6d9e8
@@ -335,6 +369,6 @@ SPEC CHECKSUMS:
   sqflite_darwin: 20b2a3a3b70e43edae938624ce550a3cbf66a3d0
   url_launcher_ios: 7a95fa5b60cc718a708b8f2966718e93db0cef1b
 
-PODFILE CHECKSUM: 3c63482e143d1b91d2d2560aee9fb04ecc74ac7e
+PODFILE CHECKSUM: 71f624498ff48b628249a8917708ec7ef95bef20
 
 COCOAPODS: 1.16.2

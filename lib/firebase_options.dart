@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCdGY18FXV5rRt-HqFFsi9DTsHzlfv84SA',
-    appId: '1:603919049610:android:95f3df292338d5bd6fde73',
+    appId: '1:603919049610:android:713510fd3e2581416fde73',
     messagingSenderId: '603919049610',
     projectId: 'weavers-dev',
     databaseURL: 'https://weavers-dev-default-rtdb.firebaseio.com',
@@ -60,13 +60,14 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyA4R0TiY-cvgD4X6MC79Is6yegX-S1CymA',
-    appId: '1:603919049610:ios:5466ab3e7a81096c6fde73',
+    appId: '1:603919049610:ios:3d02f4aed813aad86fde73',
     messagingSenderId: '603919049610',
     projectId: 'weavers-dev',
     databaseURL: 'https://weavers-dev-default-rtdb.firebaseio.com',
     storageBucket: 'weavers-dev.firebasestorage.app',
     androidClientId: '603919049610-msocksel9097supanj2a5eh3bj75amkt.apps.googleusercontent.com',
-    iosClientId: '603919049610-90b6vt1017342l5n72vaitnnmom705mb.apps.googleusercontent.com',
-    iosBundleId: 'com.example.weaversFlutterBaseProject',
+    iosClientId: '603919049610-3kar3p2ovha4cht0urpcmcifhp6ium9u.apps.googleusercontent.com',
+    iosBundleId: 'weavers.dev.app',
   );
+
 }
