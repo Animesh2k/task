@@ -80,7 +80,10 @@ class ForgotPasswordPage extends GetView<AuthController> {
                                 // Simulate or call reset logic
                                 AppToast.success(
                                   context,
-                                  t.auth.forgotPassword.otpSent.replaceAll('{{email}}', emailController.text),
+                                  t.auth.forgotPassword.otpSent.replaceAll(
+                                    '{{email}}',
+                                    emailController.text,
+                                  ),
                                 );
                                 // Navigate to OTP for Reset
                                 context.go(

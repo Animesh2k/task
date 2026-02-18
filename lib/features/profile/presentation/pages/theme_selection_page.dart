@@ -54,7 +54,10 @@ class ThemeSelectionPage extends StatelessWidget {
         ),
         title: Text(
           t.theme.selectTitle,
-          style: const TextStyle(color: AppColors.white, fontWeight: FontWeight.bold),
+          style: const TextStyle(
+            color: AppColors.white,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
       body: Stack(
@@ -78,24 +81,26 @@ class ThemeSelectionPage extends StatelessWidget {
                   Text(
                     t.theme.chooseTheme,
                     style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                          color: AppColors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      color: AppColors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 8),
                   Text(
                     t.theme.selectSubtitle,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: AppColors.textWhite70,
-                        ),
+                      color: AppColors.textWhite70,
+                    ),
                   ),
                   const SizedBox(height: 32),
                   Obx(
                     () => _buildThemeOption(
                       context,
                       theme: AppThemeType.current,
-                      isSelected: themeController.currentTheme == AppThemeType.current,
-                      onTap: () => themeController.changeTheme(AppThemeType.current),
+                      isSelected:
+                          themeController.currentTheme == AppThemeType.current,
+                      onTap: () =>
+                          themeController.changeTheme(AppThemeType.current),
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -103,8 +108,10 @@ class ThemeSelectionPage extends StatelessWidget {
                     () => _buildThemeOption(
                       context,
                       theme: AppThemeType.orange,
-                      isSelected: themeController.currentTheme == AppThemeType.orange,
-                      onTap: () => themeController.changeTheme(AppThemeType.orange),
+                      isSelected:
+                          themeController.currentTheme == AppThemeType.orange,
+                      onTap: () =>
+                          themeController.changeTheme(AppThemeType.orange),
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -112,8 +119,10 @@ class ThemeSelectionPage extends StatelessWidget {
                     () => _buildThemeOption(
                       context,
                       theme: AppThemeType.green,
-                      isSelected: themeController.currentTheme == AppThemeType.green,
-                      onTap: () => themeController.changeTheme(AppThemeType.green),
+                      isSelected:
+                          themeController.currentTheme == AppThemeType.green,
+                      onTap: () =>
+                          themeController.changeTheme(AppThemeType.green),
                     ),
                   ),
                 ],
@@ -168,16 +177,16 @@ class ThemeSelectionPage extends StatelessWidget {
                   Text(
                     theme.displayName,
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          color: AppColors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      color: AppColors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     '#${_getPrimaryColor(theme).toARGB32().toRadixString(16).substring(2).toUpperCase()} → #${_getSecondaryColor(theme).toARGB32().toRadixString(16).substring(2).toUpperCase()}',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppColors.textWhite70,
-                        ),
+                      color: AppColors.textWhite70,
+                    ),
                   ),
                 ],
               ),
@@ -204,10 +213,7 @@ class ThemeSelectionPage extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Colors.transparent,
                   shape: BoxShape.circle,
-                  border: Border.all(
-                    color: AppColors.textWhite70,
-                    width: 2,
-                  ),
+                  border: Border.all(color: AppColors.textWhite70, width: 2),
                 ),
               ),
           ],

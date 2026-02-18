@@ -97,31 +97,44 @@ class _SearchPageState extends State<SearchPage> {
                       children: [
                         Text(
                           t.search.recentSearches,
-                          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          style: Theme.of(context).textTheme.titleLarge
+                              ?.copyWith(
                                 color: AppColors.white,
                                 fontWeight: FontWeight.bold,
                               ),
                         ),
                         const SizedBox(height: 20),
-                        ..._recentSearches.map((search) => _buildSearchItem(
-                              context,
-                              search,
-                              Icons.history,
-                            )),
+                        ..._recentSearches.map(
+                          (search) =>
+                              _buildSearchItem(context, search, Icons.history),
+                        ),
                         const SizedBox(height: 30),
                         Text(
                           t.search.suggestions,
-                          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          style: Theme.of(context).textTheme.titleLarge
+                              ?.copyWith(
                                 color: AppColors.white,
                                 fontWeight: FontWeight.bold,
                               ),
                         ),
                         const SizedBox(height: 20),
-                        _buildSearchItem(context, t.search.items.weather, Icons.wb_sunny_outlined),
+                        _buildSearchItem(
+                          context,
+                          t.search.items.weather,
+                          Icons.wb_sunny_outlined,
+                        ),
                         const SizedBox(height: 12),
-                        _buildSearchItem(context, t.search.items.profile, Icons.person_outline),
+                        _buildSearchItem(
+                          context,
+                          t.search.items.profile,
+                          Icons.person_outline,
+                        ),
                         const SizedBox(height: 12),
-                        _buildSearchItem(context, t.search.items.settings, Icons.settings_outlined),
+                        _buildSearchItem(
+                          context,
+                          t.search.items.settings,
+                          Icons.settings_outlined,
+                        ),
                       ],
                     ),
                   ),
@@ -150,16 +163,12 @@ class _SearchPageState extends State<SearchPage> {
           Expanded(
             child: Text(
               title,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: AppColors.white,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(color: AppColors.white),
             ),
           ),
-          Icon(
-            Icons.arrow_forward_ios,
-            color: AppColors.textWhite70,
-            size: 16,
-          ),
+          Icon(Icons.arrow_forward_ios, color: AppColors.textWhite70, size: 16),
         ],
       ),
     );

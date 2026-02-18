@@ -1,12 +1,9 @@
-import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:get/get.dart';
-import 'package:singular_flutter_sdk/singular.dart';
-import 'package:singular_flutter_sdk/singular_config.dart';
 import 'package:toastification/toastification.dart';
 import 'firebase_options.dart';
 import 'core/env/env.dart';
@@ -69,24 +66,6 @@ Future<void> main() async {
   Get.put(LanguageController(initialLanguage: savedLanguage));
 
   runApp(MyApp(database: objectBox));
-
-  // Create configuration with credentials
-  SingularConfig config = SingularConfig(
-    Env.singularSdkKey,
-    Env.singularSdkSecret,
-  );
-  // Enable debug logging
-  config.enableLogging = true;
-  config.logLevel = 4;
-
-  // Set session timeout (in seconds)
-  config.sessionTimeout = 60.0;
-
-  // Initialize SDK
-  Singular.start(config);
-  final deviceInfoPlugin = DeviceInfoPlugin();
-  final deviceInfo = await deviceInfoPlugin.androidInfo;
-  Singular.setDeviceCustomUserId(deviceInfo.id);
 }
 
 class MyApp extends StatelessWidget {

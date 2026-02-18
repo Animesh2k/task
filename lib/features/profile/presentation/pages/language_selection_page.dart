@@ -24,7 +24,10 @@ class LanguageSelectionPage extends StatelessWidget {
         ),
         title: Text(
           t.language.selectTitle,
-          style: const TextStyle(color: AppColors.white, fontWeight: FontWeight.bold),
+          style: const TextStyle(
+            color: AppColors.white,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
       body: Stack(
@@ -48,24 +51,28 @@ class LanguageSelectionPage extends StatelessWidget {
                   Text(
                     t.language.selectTitle,
                     style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                          color: AppColors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      color: AppColors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 8),
                   Text(
                     t.language.selectSubtitle,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: AppColors.textWhite70,
-                        ),
+                      color: AppColors.textWhite70,
+                    ),
                   ),
                   const SizedBox(height: 32),
                   Obx(
                     () => _buildLanguageOption(
                       context,
                       language: AppLanguageType.english,
-                      isSelected: languageController.currentLanguage == AppLanguageType.english,
-                      onTap: () => languageController.changeLanguage(AppLanguageType.english),
+                      isSelected:
+                          languageController.currentLanguage ==
+                          AppLanguageType.english,
+                      onTap: () => languageController.changeLanguage(
+                        AppLanguageType.english,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -73,8 +80,12 @@ class LanguageSelectionPage extends StatelessWidget {
                     () => _buildLanguageOption(
                       context,
                       language: AppLanguageType.arabic,
-                      isSelected: languageController.currentLanguage == AppLanguageType.arabic,
-                      onTap: () => languageController.changeLanguage(AppLanguageType.arabic),
+                      isSelected:
+                          languageController.currentLanguage ==
+                          AppLanguageType.arabic,
+                      onTap: () => languageController.changeLanguage(
+                        AppLanguageType.arabic,
+                      ),
                     ),
                   ),
                 ],
@@ -123,9 +134,9 @@ class LanguageSelectionPage extends StatelessWidget {
                 child: Text(
                   language == AppLanguageType.english ? 'EN' : 'AR',
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: AppColors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    color: AppColors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
@@ -138,9 +149,9 @@ class LanguageSelectionPage extends StatelessWidget {
                   Text(
                     language.displayName,
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          color: AppColors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      color: AppColors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 4),
                   Text(
@@ -148,8 +159,8 @@ class LanguageSelectionPage extends StatelessWidget {
                         ? t.language.englishName
                         : t.language.arabicName,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppColors.textWhite70,
-                        ),
+                      color: AppColors.textWhite70,
+                    ),
                   ),
                 ],
               ),
@@ -163,11 +174,7 @@ class LanguageSelectionPage extends StatelessWidget {
                   color: AppColors.white,
                   shape: BoxShape.circle,
                 ),
-                child: Icon(
-                  Icons.check,
-                  color: AppColors.primary,
-                  size: 16,
-                ),
+                child: Icon(Icons.check, color: AppColors.primary, size: 16),
               )
             else
               Container(
@@ -176,10 +183,7 @@ class LanguageSelectionPage extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Colors.transparent,
                   shape: BoxShape.circle,
-                  border: Border.all(
-                    color: AppColors.textWhite70,
-                    width: 2,
-                  ),
+                  border: Border.all(color: AppColors.textWhite70, width: 2),
                 ),
               ),
           ],

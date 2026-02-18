@@ -1,12 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <!-- Singular SDK -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="BIND_GET_INSTALL_REFERRER_SERVICE" />
-    <uses-permission android:name="com.android.vending.CHECK_LICENSE" />
-    <!-- Singular SDK End -->
     <application
         android:label="Weavers Dev"
         android:name="${applicationName}"

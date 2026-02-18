@@ -11,7 +11,7 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = context.t;
-    
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -23,7 +23,10 @@ class SettingsPage extends StatelessWidget {
         ),
         title: Text(
           t.settings.title,
-          style: const TextStyle(color: AppColors.white, fontWeight: FontWeight.bold),
+          style: const TextStyle(
+            color: AppColors.white,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
       body: Stack(
@@ -47,16 +50,16 @@ class SettingsPage extends StatelessWidget {
                   Text(
                     t.settings.title,
                     style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                          color: AppColors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      color: AppColors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 10),
                   Text(
                     t.settings.subtitle,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: AppColors.textWhite70,
-                        ),
+                      color: AppColors.textWhite70,
+                    ),
                   ),
                   const SizedBox(height: 40),
                   // Settings Options
@@ -65,7 +68,9 @@ class SettingsPage extends StatelessWidget {
                     icon: Icons.palette_outlined,
                     title: t.settings.theme,
                     description: t.settings.themeDescription,
-                    onTap: () => context.push('${RouteConstants.profile}/${RouteConstants.themeSelection}'),
+                    onTap: () => context.push(
+                      '${RouteConstants.profile}/${RouteConstants.themeSelection}',
+                    ),
                   ),
                   const SizedBox(height: 16),
                   _buildSettingsOption(
@@ -73,7 +78,9 @@ class SettingsPage extends StatelessWidget {
                     icon: Icons.language_outlined,
                     title: t.settings.language,
                     description: t.settings.languageDescription,
-                    onTap: () => context.push('${RouteConstants.profile}/${RouteConstants.languageSelection}'),
+                    onTap: () => context.push(
+                      '${RouteConstants.profile}/${RouteConstants.languageSelection}',
+                    ),
                   ),
                 ],
               ),
@@ -112,16 +119,16 @@ class SettingsPage extends StatelessWidget {
                   Text(
                     title,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          color: AppColors.white,
-                          fontWeight: FontWeight.w600,
-                        ),
+                      color: AppColors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     description,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppColors.textWhite70,
-                        ),
+                      color: AppColors.textWhite70,
+                    ),
                   ),
                 ],
               ),

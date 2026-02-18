@@ -20,7 +20,10 @@ class DashboardPage extends StatelessWidget {
         ),
         title: Text(
           t.home.dashboardPage.title,
-          style: const TextStyle(color: AppColors.white, fontWeight: FontWeight.bold),
+          style: const TextStyle(
+            color: AppColors.white,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
       body: Stack(
@@ -57,16 +60,16 @@ class DashboardPage extends StatelessWidget {
                   Text(
                     t.home.dashboardPage.title,
                     style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                          color: AppColors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      color: AppColors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 12),
                   Text(
                     t.home.dashboardPage.subtitle,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: AppColors.textWhite70,
-                        ),
+                      color: AppColors.textWhite70,
+                    ),
                     textAlign: TextAlign.center,
                   ),
                 ],

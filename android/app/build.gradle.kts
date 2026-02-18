@@ -46,12 +46,3 @@ android {
 flutter {
     source = "../.."
 }
-
-
-dependencies {
-    // Required for Install Referrer tracking (Singular attribution)
-    implementation("com.android.installreferrer:installreferrer:2.2")
-
-    // Required for App Set ID (Google Play services)
-    implementation("com.google.android.gms:play-services-appset:16.0.0")
-}

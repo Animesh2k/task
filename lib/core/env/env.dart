@@ -46,16 +46,6 @@ abstract class Env {
   @EnviedField(varName: 'PEXELS_API_KEY')
   static final String pexelsApiKey = _Env.pexelsApiKey;
 
-  /// Singular API Key
-  /// Environment variable: SINGULAR_SDK_KEY
-  @EnviedField(varName: 'SINGULAR_SDK_KEY')
-  static final String singularSdkKey = _Env.singularSdkKey;
-
-  /// Singular API Key
-  /// Environment variable: PEXELS_API_KEY
-  @EnviedField(varName: 'SINGULAR_SDK_SECRET')
-  static final String singularSdkSecret = _Env.singularSdkSecret;
-
   // =====================================================================
   // ADD MORE ENVIRONMENT VARIABLES BELOW
   // =====================================================================

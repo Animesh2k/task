@@ -120,6 +120,7 @@ dependencies:
   firebase_core: ^4.4.0              # Required for Firebase Analytics and Crashlytics
   firebase_analytics: ^12.1.1        # Firebase Analytics
   firebase_crashlytics: ^5.0.7       # Firebase Crashlytics
+  
 
   # App Updates & Reviews
   playx_version_update: ^1.0.1       # Version update with in-app updates
@@ -133,8 +134,8 @@ dependencies:
   image_picker: ^1.2.1
   crypto: ^3.0.7
   toastification: ^3.0.3
-  singular_flutter_sdk: ^1.8.0
   device_info_plus: ^12.3.0
+  firebase_messaging: ^16.1.1
 
 dev_dependencies:
   flutter_test:

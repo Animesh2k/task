@@ -32,7 +32,10 @@ class AuthController extends GetxController {
           );
         } catch (e, stackTrace) {
           log('Navigation error: $e', error: e, stackTrace: stackTrace);
-          AppToast.showError(t.auth.errors.navigationError, description: t.auth.errors.navigationFailed);
+          AppToast.showError(
+            t.auth.errors.navigationError,
+            description: t.auth.errors.navigationFailed,
+          );
         }
       } else if (credential != null) {
         // Navigate Home
@@ -40,7 +43,10 @@ class AuthController extends GetxController {
           NavigationHelper.toHome();
         } catch (e, stackTrace) {
           log('Navigation error: $e', error: e, stackTrace: stackTrace);
-          AppToast.showError(t.auth.errors.navigationError, description: t.auth.errors.navigationFailed);
+          AppToast.showError(
+            t.auth.errors.navigationError,
+            description: t.auth.errors.navigationFailed,
+          );
         }
       }
     } catch (e) {
@@ -62,14 +68,20 @@ class AuthController extends GetxController {
           );
         } catch (e, stackTrace) {
           log('Navigation error: $e', error: e, stackTrace: stackTrace);
-          AppToast.showError(t.auth.errors.navigationError, description: t.auth.errors.navigationFailed);
+          AppToast.showError(
+            t.auth.errors.navigationError,
+            description: t.auth.errors.navigationFailed,
+          );
         }
       } else if (credential != null) {
         try {
           NavigationHelper.toHome();
         } catch (e, stackTrace) {
           log('Navigation error: $e', error: e, stackTrace: stackTrace);
-          AppToast.showError(t.auth.errors.navigationError, description: t.auth.errors.navigationFailed);
+          AppToast.showError(
+            t.auth.errors.navigationError,
+            description: t.auth.errors.navigationFailed,
+          );
         }
       }
     } catch (e) {
@@ -89,7 +101,10 @@ class AuthController extends GetxController {
         NavigationHelper.toHome();
       } catch (e, stackTrace) {
         log('Navigation error: $e', error: e, stackTrace: stackTrace);
-        AppToast.showError(t.auth.errors.navigationError, description: t.auth.errors.navigationFailed);
+        AppToast.showError(
+          t.auth.errors.navigationError,
+          description: t.auth.errors.navigationFailed,
+        );
       }
     } catch (e) {
       log('Error: $e');
@@ -108,7 +123,10 @@ class AuthController extends GetxController {
         NavigationHelper.toOtpVerification(email: email);
       } catch (e, stackTrace) {
         log('Navigation error: $e', error: e, stackTrace: stackTrace);
-        AppToast.showError(t.auth.errors.navigationError, description: t.auth.errors.navigationFailed);
+        AppToast.showError(
+          t.auth.errors.navigationError,
+          description: t.auth.errors.navigationFailed,
+        );
       }
     } catch (e) {
       AppToast.showError(t.auth.errors.error, description: e.toString());
@@ -124,7 +142,10 @@ class AuthController extends GetxController {
         NavigationHelper.toLogin();
       } catch (e, stackTrace) {
         log('Navigation error: $e', error: e, stackTrace: stackTrace);
-        AppToast.showError(t.auth.errors.navigationError, description: t.auth.errors.navigationFailed);
+        AppToast.showError(
+          t.auth.errors.navigationError,
+          description: t.auth.errors.navigationFailed,
+        );
       }
     } catch (e) {
       log('Logout error: $e');
@@ -141,7 +162,10 @@ class AuthController extends GetxController {
         NavigationHelper.toLogin();
       } catch (e, stackTrace) {
         log('Navigation error: $e', error: e, stackTrace: stackTrace);
-        AppToast.showError(t.auth.errors.navigationError, description: t.auth.errors.navigationFailed);
+        AppToast.showError(
+          t.auth.errors.navigationError,
+          description: t.auth.errors.navigationFailed,
+        );
       }
     } catch (e) {
       AppToast.showError(t.auth.errors.error, description: e.toString());

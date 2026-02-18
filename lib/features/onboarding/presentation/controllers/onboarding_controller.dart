@@ -59,8 +59,6 @@ class OnboardingController extends GetxController {
   // --- Profile Logic ---
   Future<void> pickImage() async {
     final ImagePicker picker = ImagePicker();
-    // Show dialog to choose source
-    // For simplicity, defaulting to gallery here, but UI can offer choice
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);
     if (image != null) {
       profileImage.value = File(image.path);
@@ -82,11 +80,6 @@ class OnboardingController extends GetxController {
   // --- Permissions Logic ---
   Future<void> requestPermissions() async {
     // In a real app, use permission_handler here
-    // await Permission.camera.request();
-    // await Permission.photos.request();
-    // await Permission.location.request();
-
-    // For mock:
     cameraPermission.value = true;
     galleryPermission.value = true;
     locationPermission.value = true;

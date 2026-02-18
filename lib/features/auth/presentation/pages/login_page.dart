@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../core/theme/app_colors.dart';
 import '../../../../core/navigation/route_constants.dart';
+import '../../../../core/theme/app_colors.dart';
 import '../../../../i18n/strings.g.dart';
 import '../controllers/auth_controller.dart';
 
@@ -103,7 +103,9 @@ class LoginPage extends GetView<AuthController> {
                                 context.go(RouteConstants.forgotPassword),
                             child: Text(
                               t.auth.login.forgotPassword,
-                              style: const TextStyle(color: AppColors.textWhite70),
+                              style: const TextStyle(
+                                color: AppColors.textWhite70,
+                              ),
                             ),
                           ),
                         ),

@@ -39,7 +39,10 @@ class ProfilePage extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: AppColors.glassBackground,
                       shape: BoxShape.circle,
-                      border: Border.all(color: AppColors.glassBorder, width: 2),
+                      border: Border.all(
+                        color: AppColors.glassBorder,
+                        width: 2,
+                      ),
                     ),
                     child: const Icon(
                       Icons.person,
@@ -51,9 +54,9 @@ class ProfilePage extends StatelessWidget {
                   Text(
                     t.profile.title,
                     style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                          color: AppColors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      color: AppColors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 40),
                   // Profile Options
@@ -61,14 +64,18 @@ class ProfilePage extends StatelessWidget {
                     context,
                     icon: Icons.person_outline,
                     title: t.profile.editProfile,
-                    onTap: () => context.push('${RouteConstants.profile}/${RouteConstants.editProfile}'),
+                    onTap: () => context.push(
+                      '${RouteConstants.profile}/${RouteConstants.editProfile}',
+                    ),
                   ),
                   const SizedBox(height: 16),
                   _buildProfileOption(
                     context,
                     icon: Icons.settings_outlined,
                     title: t.profile.settings,
-                    onTap: () => context.push('${RouteConstants.profile}/${RouteConstants.settings}'),
+                    onTap: () => context.push(
+                      '${RouteConstants.profile}/${RouteConstants.settings}',
+                    ),
                   ),
                   const SizedBox(height: 16),
                   _buildProfileOption(
@@ -98,7 +105,9 @@ class ProfilePage extends StatelessWidget {
                         foregroundColor: AppColors.white,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
-                          side: BorderSide(color: Colors.red.withValues(alpha: 0.5)),
+                          side: BorderSide(
+                            color: Colors.red.withValues(alpha: 0.5),
+                          ),
                         ),
                       ),
                       child: Text(t.profile.logout),
@@ -136,9 +145,9 @@ class ProfilePage extends StatelessWidget {
             Expanded(
               child: Text(
                 title,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: AppColors.white,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(color: AppColors.white),
               ),
             ),
             Icon(

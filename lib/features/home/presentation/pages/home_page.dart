@@ -34,16 +34,16 @@ class HomePage extends StatelessWidget {
                   Text(
                     t.home.welcome,
                     style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                          color: AppColors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      color: AppColors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 10),
                   Text(
                     t.home.dashboardOverview,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: AppColors.textWhite70,
-                        ),
+                      color: AppColors.textWhite70,
+                    ),
                   ),
                   const SizedBox(height: 40),
                   // Dashboard Cards
@@ -52,7 +52,9 @@ class HomePage extends StatelessWidget {
                     icon: Icons.dashboard_outlined,
                     title: t.home.dashboard,
                     description: t.home.dashboardDescription,
-                    onTap: () => context.push('${RouteConstants.home}/${RouteConstants.dashboard}'),
+                    onTap: () => context.push(
+                      '${RouteConstants.home}/${RouteConstants.dashboard}',
+                    ),
                   ),
                   const SizedBox(height: 20),
                   _buildDashboardCard(
@@ -60,7 +62,9 @@ class HomePage extends StatelessWidget {
                     icon: Icons.trending_up_outlined,
                     title: t.home.analytics,
                     description: t.home.analyticsDescription,
-                    onTap: () => context.push('${RouteConstants.home}/${RouteConstants.analytics}'),
+                    onTap: () => context.push(
+                      '${RouteConstants.home}/${RouteConstants.analytics}',
+                    ),
                   ),
                   const SizedBox(height: 20),
                   _buildDashboardCard(
@@ -115,16 +119,16 @@ class HomePage extends StatelessWidget {
                   Text(
                     title,
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          color: AppColors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      color: AppColors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     description,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: AppColors.textWhite70,
-                        ),
+                      color: AppColors.textWhite70,
+                    ),
                   ),
                 ],
               ),
