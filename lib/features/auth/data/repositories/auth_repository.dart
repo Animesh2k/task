@@ -14,11 +14,18 @@ class AuthRepository {
   ///
   /// Note: The 'scopes' are optional but recommended.
   final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
+  bool _isGoogleSignInInitialized = false;
 
   // --- Social Auth (Real) ---
 
   Future<UserCredential?> signInWithGoogle() async {
     try {
+      if (!_isGoogleSignInInitialized) {
+        await _googleSignIn.initialize(
+          serverClientId: '603919049610-cb8eovefun99bj7vdddg5lj7nd59685r.apps.googleusercontent.com',
+        );
+        _isGoogleSignInInitialized = true;
+      }
       // Trigger the authentication flow
       final GoogleSignInAccount googleUser = await _googleSignIn.authenticate();
 
