@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:toastification/toastification.dart';
 import 'firebase_options.dart';
@@ -12,6 +13,8 @@ import 'core/services/objectbox_service.dart';
 import 'core/widgets/app_lifecycle_handler.dart';
 import 'core/theme/app_theme.dart';
 import 'core/navigation/app_router.dart';
+import 'core/navigation/navigation_helper.dart';
+import 'core/theme/app_theme_type.dart';
 
 import 'features/auth/presentation/controllers/auth_controller.dart';
 import 'features/onboarding/presentation/controllers/onboarding_controller.dart';
@@ -19,6 +22,7 @@ import 'core/theme/theme_controller.dart';
 import 'core/services/theme_service.dart';
 import 'core/language/language_controller.dart';
 import 'core/services/language_service.dart';
+import 'core/services/notification_service.dart';
 import 'i18n/strings.g.dart';
 
 late ObjectBoxService objectBox;
@@ -28,6 +32,15 @@ Future<void> main() async {
 
   // Initialize Firebase
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  // Note: Firebase Auth persistence is automatic on mobile (iOS/Android)
+  // Only web requires setPersistence() call
+
+  // Initialize Firestore
+  FirebaseFirestore.instance.settings = const Settings(
+    persistenceEnabled: true,
+    cacheSizeBytes: Settings.CACHE_SIZE_UNLIMITED,
+  );
 
   // Set up Crashlytics
   FlutterError.onError = (errorDetails) {
@@ -45,6 +58,9 @@ Future<void> main() async {
 
   // Initialize ObjectBox
   objectBox = await ObjectBoxService.create();
+
+  // Initialize local notifications & request permissions
+  await NotificationService().initialize();
 
   // Initialize Network Layer
   DioClient.initialize(
@@ -75,42 +91,72 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authController = Get.find<AuthController>();
+    final themeController = Get.find<ThemeController>();
+
     return ToastificationWrapper(
       child: AppLifecycleHandler(
         child: TranslationProvider(
           child: GestureDetector(
             onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-            child: GetBuilder<ThemeController>(
-              builder: (themeController) {
-                return GetBuilder<LanguageController>(
-                  builder: (languageController) {
-                    return MaterialApp.router(
-                      title: 'Flutter Base Project',
-                      debugShowCheckedModeBanner: false,
-                      theme: AppTheme.getTheme(),
-                      routerConfig: AppRouter.router,
-                      locale: languageController.currentAppLocale.flutterLocale,
-                      supportedLocales:
-                          AppLocaleUtils.instance.supportedLocales,
-                      localizationsDelegates: const [
-                        GlobalMaterialLocalizations.delegate,
-                        GlobalWidgetsLocalizations.delegate,
-                        GlobalCupertinoLocalizations.delegate,
-                      ],
-                      builder: (context, child) {
-                        // Wrap with Directionality for RTL support
+            child: Obx(() {
+              final theme = themeController.currentTheme;
+              final isDark =
+                  theme == AppThemeMode.dark ||
+                  (theme == AppThemeMode.system &&
+                      MediaQuery.platformBrightnessOf(context) ==
+                          Brightness.dark);
+
+              return GetBuilder<LanguageController>(
+                builder: (languageController) {
+                  return MaterialApp.router(
+                    title: 'Task Manager',
+                    debugShowCheckedModeBanner: false,
+                    theme: AppTheme.getTheme(isDarkMode: isDark),
+                    darkTheme: AppTheme.getTheme(isDarkMode: true),
+                    themeMode: theme == AppThemeMode.system
+                        ? ThemeMode.system
+                        : (theme == AppThemeMode.dark
+                              ? ThemeMode.dark
+                              : ThemeMode.light),
+                    routerConfig: AppRouter.router,
+                    locale: languageController.currentAppLocale.flutterLocale,
+                    supportedLocales: AppLocaleUtils.instance.supportedLocales,
+                    localizationsDelegates: const [
+                      GlobalMaterialLocalizations.delegate,
+                      GlobalWidgetsLocalizations.delegate,
+                      GlobalCupertinoLocalizations.delegate,
+                    ],
+                    builder: (context, child) {
+                      // Auth state redirect
+                      return Obx(() {
+                        final user = authController.firebaseUser.value;
+                        final currentRoute = AppRouter
+                            .router
+                            .routerDelegate
+                            .currentConfiguration
+                            .uri
+                            .path;
+
+                        // Redirect authenticated users from login to tasks
+                        if (user != null && currentRoute == '/login') {
+                          WidgetsBinding.instance.addPostFrameCallback((_) {
+                            NavigationHelper.toTasks();
+                          });
+                        }
+
                         return Directionality(
                           textDirection: languageController.isRTL
                               ? TextDirection.rtl
                               : TextDirection.ltr,
                           child: child!,
                         );
-                      },
-                    );
-                  },
-                );
-              },
-            ),
+                      });
+                    },
+                  );
+                },
+              );
+            }),
           ),
         ),
       ),

@@ -10,7 +10,7 @@ plugins {
 }
 
 android {
-    namespace = "weavers.dev.app"
+    namespace = "assignment.app"
     compileSdk = 36  // Required for playx_version_update
     ndkVersion = flutter.ndkVersion
 
@@ -25,7 +25,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "weavers.dev.app"
+        applicationId = "assignment.app"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion

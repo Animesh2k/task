@@ -1,14 +1,14 @@
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
-import '../../features/weather/data/models/weather_cache_entity.dart';
+import '../../features/tasks/data/models/task_entity.dart';
 import '../../../objectbox.g.dart'; // Generated file
 
 class ObjectBoxService {
   late final Store store;
-  late final Box<WeatherCache> weatherBox;
+  late final Box<TaskEntity> taskBox;
 
   ObjectBoxService._create(this.store) {
-    weatherBox = Box<WeatherCache>(store);
+    taskBox = Box<TaskEntity>(store);
   }
 
   /// Create an instance of ObjectBox to use throughout the app.
@@ -18,62 +18,89 @@ class ObjectBoxService {
     return ObjectBoxService._create(store);
   }
 
-  /// Saves weather data to the cache
-  void saveWeather(
-    String locationKey,
-    String cityName,
-    String jsonWeatherData,
-  ) {
-    final query = weatherBox
-        .query(WeatherCache_.locationKey.equals(locationKey))
-        .build();
-    final existing = query.findFirst();
-    query.close();
+  // ==================== Task Operations ====================
 
-    final cache = WeatherCache(
-      id: existing?.id ?? 0,
-      locationKey: locationKey,
-      cityName: cityName,
-      jsonWeatherData: jsonWeatherData,
-      timestamp: DateTime.now().millisecondsSinceEpoch,
-    );
-
-    weatherBox.put(cache);
-  }
-
-  /// Retrieves weather data from cache if it's not expired (1 hour TTL)
-  WeatherCache? getWeather(
-    String locationKey, {
-    Duration ttl = const Duration(hours: 1),
-  }) {
-    final query = weatherBox
-        .query(WeatherCache_.locationKey.equals(locationKey))
-        .build();
-    final cache = query.findFirst();
-    query.close();
-
-    if (cache == null) return null;
-
-    final cachedTime = DateTime.fromMillisecondsSinceEpoch(cache.timestamp);
-    final now = DateTime.now();
-
-    if (now.difference(cachedTime) < ttl) {
-      return cache;
+  /// Save or update a task in local database
+  void saveTask(TaskEntity task) {
+    // Check if task with same firestoreId already exists
+    if (task.firestoreId.isNotEmpty) {
+      final existing = getTask(task.firestoreId);
+      if (existing != null && existing.id != task.id) {
+        // Update the task to use the existing entity's ID
+        final updatedTask = TaskEntity(
+          id: existing.id,
+          firestoreId: task.firestoreId,
+          title: task.title,
+          description: task.description,
+          status: task.status,
+          createdAt: task.createdAt,
+          updatedAt: task.updatedAt,
+          userId: task.userId,
+          synced: task.synced,
+        );
+        taskBox.put(updatedTask);
+        return;
+      }
     }
-
-    return null;
+    taskBox.put(task);
   }
 
-  /// Clears the cache for a specific location
-  void clearCache(String locationKey) {
-    final query = weatherBox
-        .query(WeatherCache_.locationKey.equals(locationKey))
+  /// Get a task by Firestore ID
+  TaskEntity? getTask(String firestoreId) {
+    final query = taskBox
+        .query(TaskEntity_.firestoreId.equals(firestoreId))
         .build();
-    final existing = query.findFirst();
+    final task = query.findFirst();
+    query.close();
+    return task;
+  }
+
+  /// Get all tasks for a user
+  List<TaskEntity> getUserTasks(String userId) {
+    final query = taskBox
+        .query(TaskEntity_.userId.equals(userId))
+        .order(TaskEntity_.updatedAt, flags: Order.descending)
+        .build();
+    final tasks = query.find();
+    query.close();
+    return tasks;
+  }
+
+  /// Get unsynced tasks
+  List<TaskEntity> getUnsyncedTasks(String userId) {
+    final query = taskBox
+        .query(
+          TaskEntity_.userId
+              .equals(userId)
+              .and(TaskEntity_.synced.equals(false)),
+        )
+        .build();
+    final tasks = query.find();
+    query.close();
+    return tasks;
+  }
+
+  /// Delete a task by Firestore ID
+  void deleteTask(String firestoreId) {
+    final query = taskBox
+        .query(TaskEntity_.firestoreId.equals(firestoreId))
+        .build();
+    final task = query.findFirst();
     query.close();
 
-    if (existing != null) {
-      weatherBox.remove(existing.id);
+    if (task != null) {
+      taskBox.remove(task.id);
+    }
+  }
+
+  /// Clear all tasks for a user
+  void clearUserTasks(String userId) {
+    final query = taskBox.query(TaskEntity_.userId.equals(userId)).build();
+    final tasks = query.find();
+    query.close();
+
+    for (final task in tasks) {
+      taskBox.remove(task.id);
     }
   }
 }

@@ -5,20 +5,20 @@ import 'app_theme_type.dart';
 /// Controller for managing app theme state.
 class ThemeController extends GetxController {
   final ThemeService _themeService = ThemeService();
-  
-  final _currentTheme = AppThemeType.current.obs;
+
+  final _currentTheme = AppThemeMode.system.obs;
   final bool _hasInitialTheme;
 
   /// Constructor with optional initial theme.
-  ThemeController({AppThemeType? initialTheme})
-      : _hasInitialTheme = initialTheme != null {
+  ThemeController({AppThemeMode? initialTheme})
+    : _hasInitialTheme = initialTheme != null {
     if (initialTheme != null) {
       _currentTheme.value = initialTheme;
     }
   }
 
   /// Get the current theme.
-  AppThemeType get currentTheme => _currentTheme.value;
+  AppThemeMode get currentTheme => _currentTheme.value;
 
   @override
   void onInit() {
@@ -36,7 +36,7 @@ class ThemeController extends GetxController {
   }
 
   /// Change the app theme and persist the selection.
-  Future<void> changeTheme(AppThemeType theme) async {
+  Future<void> changeTheme(AppThemeMode theme) async {
     _currentTheme.value = theme;
     await _themeService.setTheme(theme);
     update(); // Trigger GetBuilder rebuild

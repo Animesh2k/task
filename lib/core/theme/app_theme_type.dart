@@ -1,43 +1,69 @@
-/// Theme type enumeration for the application.
-enum AppThemeType {
-  current,
-  orange,
-  green;
+import 'package:flutter/material.dart';
 
-  /// Convert theme type to string for persistence.
+/// Theme mode enumeration for the application.
+enum AppThemeMode {
+  light,
+  dark,
+  system;
+
+  /// Convert theme mode to string for persistence.
   String toValue() {
     switch (this) {
-      case AppThemeType.current:
-        return 'current';
-      case AppThemeType.orange:
-        return 'orange';
-      case AppThemeType.green:
-        return 'green';
+      case AppThemeMode.light:
+        return 'light';
+      case AppThemeMode.dark:
+        return 'dark';
+      case AppThemeMode.system:
+        return 'system';
     }
   }
 
-  /// Create theme type from string value.
-  static AppThemeType fromValue(String value) {
+  /// Create theme mode from string value.
+  static AppThemeMode fromValue(String value) {
     switch (value) {
-      case 'orange':
-        return AppThemeType.orange;
-      case 'green':
-        return AppThemeType.green;
-      case 'current':
+      case 'light':
+        return AppThemeMode.light;
+      case 'dark':
+        return AppThemeMode.dark;
+      case 'system':
       default:
-        return AppThemeType.current;
+        return AppThemeMode.system;
     }
   }
 
   /// Get display name for the theme.
   String get displayName {
     switch (this) {
-      case AppThemeType.current:
-        return 'Current';
-      case AppThemeType.orange:
-        return 'Orange';
-      case AppThemeType.green:
-        return 'Green';
+      case AppThemeMode.light:
+        return 'Light';
+      case AppThemeMode.dark:
+        return 'Dark';
+      case AppThemeMode.system:
+        return 'System';
+    }
+  }
+
+  /// Convert to Flutter ThemeMode.
+  ThemeMode toFlutterThemeMode() {
+    switch (this) {
+      case AppThemeMode.light:
+        return ThemeMode.light;
+      case AppThemeMode.dark:
+        return ThemeMode.dark;
+      case AppThemeMode.system:
+        return ThemeMode.system;
+    }
+  }
+
+  /// Create from Flutter ThemeMode.
+  static AppThemeMode fromFlutterThemeMode(ThemeMode mode) {
+    switch (mode) {
+      case ThemeMode.light:
+        return AppThemeMode.light;
+      case ThemeMode.dark:
+        return AppThemeMode.dark;
+      case ThemeMode.system:
+        return AppThemeMode.system;
     }
   }
 }

@@ -40,16 +40,8 @@ class OnboardingController extends GetxController {
     await Future.delayed(const Duration(seconds: 2)); // Mock API delay
 
     if (enteredOtp == '1234') {
-      // Check if this is a reset flow
-      final args = Get.arguments;
-      final bool isResetFlow = (args is Map && args['isResetFlow'] == true);
-
-      if (isResetFlow) {
-        NavigationHelper.toResetPassword();
-      } else {
-        // Signup flow -> Profile Creation
-        NavigationHelper.toProfileCreation();
-      }
+      // Onboarding flow removed - redirect to tasks
+      NavigationHelper.toTasks();
     } else {
       AppToast.showError(t.onboarding.otp.invalidOtp);
     }
@@ -73,7 +65,7 @@ class OnboardingController extends GetxController {
 
     isLoading.value = true;
     await Future.delayed(const Duration(seconds: 2)); // Mock Save
-    NavigationHelper.toPermissions();
+    NavigationHelper.toTasks();
     isLoading.value = false;
   }
 
@@ -84,6 +76,6 @@ class OnboardingController extends GetxController {
     galleryPermission.value = true;
     locationPermission.value = true;
 
-    Get.offAllNamed('/home');
+    NavigationHelper.toTasks();
   }
 }

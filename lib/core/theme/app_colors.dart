@@ -3,72 +3,69 @@ import 'package:get/get.dart';
 import 'app_theme_type.dart';
 import 'theme_controller.dart';
 
+/// Simplified color palette using white/black backgrounds with blue accent.
+/// Flat design - no gradients or glassmorphism.
 class AppColors {
   AppColors._();
 
-  // Common colors (not theme-dependent)
-  static const Color white = Colors.white;
-  static const Color black = Colors.black;
-  static const Color transparent = Colors.transparent;
-  static const Color accent = Color(0xFF00C6FF); // Cyan-ish for contrast
-  static const Color textWhite = Colors.white;
-  static const Color textWhite70 = Colors.white70;
+  // Background colors
+  static Color get background => _isDarkMode ? Colors.black : Colors.white;
+  static Color get surface =>
+      _isDarkMode ? Colors.grey[900]! : Colors.grey[100]!;
 
-  // Theme-specific colors
-  static Color _getPrimaryColor(AppThemeType theme) {
-    switch (theme) {
-      case AppThemeType.current:
-        return const Color(0xFF667EEA);
-      case AppThemeType.orange:
-        return const Color(0xFFFF6B35);
-      case AppThemeType.green:
-        return const Color(0xFF11998E);
-    }
-  }
+  // Primary accent - Blue
+  static const Color primary = Colors.blue;
+  static Color get primaryLight => Colors.blue[300]!;
+  static Color get primaryDark => Colors.blue[700]!;
 
-  static Color _getSecondaryColor(AppThemeType theme) {
-    switch (theme) {
-      case AppThemeType.current:
-        return const Color(0xFF764BA2);
-      case AppThemeType.orange:
-        return const Color(0xFFF7931E);
-      case AppThemeType.green:
-        return const Color(0xFF38EF7D);
-    }
-  }
+  // Text colors
+  static Color get textPrimary => _isDarkMode ? Colors.white : Colors.black;
+  static Color get textSecondary =>
+      _isDarkMode ? Colors.white70 : Colors.black54;
+  static Color get textDisabled =>
+      _isDarkMode ? Colors.white38 : Colors.black38;
 
-  /// Get primary color based on current theme.
-  static Color get primary {
+  // Utility colors
+  static Color get divider => _isDarkMode ? Colors.white24 : Colors.black12;
+  static Color get border => _isDarkMode ? Colors.white24 : Colors.black26;
+  static Color get error => Colors.red;
+  static Color get success => Colors.green;
+
+  /// Check if dark mode is active
+  static bool get _isDarkMode {
     try {
       final controller = Get.find<ThemeController>();
-      return _getPrimaryColor(controller.currentTheme);
+      final theme = controller.currentTheme;
+      if (theme == AppThemeMode.dark) return true;
+      if (theme == AppThemeMode.light) return false;
+      final brightness =
+          WidgetsBinding.instance.platformDispatcher.platformBrightness;
+      return brightness == Brightness.dark;
     } catch (e) {
-      // Fallback if controller not initialized
-      return const Color(0xFF667EEA);
+      return false;
     }
   }
 
-  /// Get secondary color based on current theme.
-  static Color get secondary {
-    try {
-      final controller = Get.find<ThemeController>();
-      return _getSecondaryColor(controller.currentTheme);
-    } catch (e) {
-      // Fallback if controller not initialized
-      return const Color(0xFF764BA2);
-    }
-  }
+  // For backwards compatibility with old code
+  static Color get white => Colors.white;
+  static Color get black => Colors.black;
+  static Color get transparent => Colors.transparent;
+  static Color get accent => primary;
+  static Color get textWhite => Colors.white;
+  static Color get textWhite70 => Colors.white70;
+  static Color get primaryLegacy => primary;
+  static Color get secondary => primaryLight;
 
-  // Glassmorphism (not theme-dependent)
-  static Color get glassBackground => Colors.white.withValues(alpha: 0.1);
-  static Color get glassBorder => Colors.white.withValues(alpha: 0.3);
+  // Backwards compatibility - glassmorphism removed, use surface color instead
+  static Color get glassBackground => surface;
+  static Color get glassBorder => border;
 
-  /// Get main gradient based on current theme.
+  // Backwards compatibility - gradient removed
   static LinearGradient get mainGradient {
     return LinearGradient(
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
-      colors: [primary, secondary],
+      colors: [primary, primaryLight],
     );
   }
 }

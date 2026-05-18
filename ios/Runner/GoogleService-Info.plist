@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>603919049610-3kar3p2ovha4cht0urpcmcifhp6ium9u.apps.googleusercontent.com</string>
+	<string>603919049610-ijugmqgjnk20birf1q7n459hjg5g9ubr.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.603919049610-3kar3p2ovha4cht0urpcmcifhp6ium9u</string>
+	<string>com.googleusercontent.apps.603919049610-ijugmqgjnk20birf1q7n459hjg5g9ubr</string>
 	<key>ANDROID_CLIENT_ID</key>
 	<string>603919049610-msocksel9097supanj2a5eh3bj75amkt.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>weavers.dev.app</string>
+	<string>assignment.app</string>
 	<key>PROJECT_ID</key>
 	<string>weavers-dev</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,7 +31,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:603919049610:ios:3d02f4aed813aad86fde73</string>
+	<string>1:603919049610:ios:418b6d0cc4816c966fde73</string>
 	<key>DATABASE_URL</key>
 	<string>https://weavers-dev-default-rtdb.firebaseio.com</string>
 </dict>

@@ -136,6 +136,9 @@ dependencies:
   toastification: ^3.0.3
   device_info_plus: ^12.3.0
   firebase_messaging: ^16.1.1
+  flutter_offline: ^6.0.0
+  cloud_firestore: ^6.4.1
+  flutter_local_notifications: ^21.0.0
 
 dev_dependencies:
   flutter_test:
@@ -174,15 +177,15 @@ flutter:
 # Package Rename : Command : dart run package_rename
 package_rename_config:
   android:
-    app_name: Weavers Dev
-    package_name: weavers.dev.app
+    app_name: Assignment
+    package_name: assignment.app
     # override_old_package: com.example.example
     lang: kotlin
 
   ios:
-    app_name: Weavers Dev
-    bundle_name: Weavers Dev
-    package_name: weavers.dev.app
+    app_name: Assignment
+    bundle_name: Assignment
+    package_name: assignment.app
 
 # Project Rename 
 # dart pub global activate change_project_name

@@ -1,21 +1,18 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/auth/presentation/pages/login_page.dart';
-import '../../features/auth/presentation/pages/signup_page.dart';
-import '../../features/auth/presentation/pages/forgot_password_page.dart';
-import '../../features/auth/presentation/pages/reset_password_page.dart';
-import '../../features/onboarding/presentation/pages/otp_verification_page.dart';
-import '../../features/onboarding/presentation/pages/profile_creation_page.dart';
-import '../../features/onboarding/presentation/pages/permissions_page.dart';
-import '../../features/home/presentation/pages/home_page.dart';
-import '../../features/home/presentation/pages/dashboard_page.dart';
-import '../../features/home/presentation/pages/analytics_page.dart';
-import '../../features/weather/presentation/pages/weather_screen.dart';
+import '../../features/auth/presentation/controllers/auth_controller.dart';
+import '../../features/tasks/presentation/pages/task_list_page.dart';
+import '../../features/tasks/presentation/pages/task_create_page.dart';
+import '../../features/tasks/presentation/pages/task_edit_page.dart';
+import '../../features/tasks/presentation/bloc/task_bloc.dart';
+import '../../features/tasks/presentation/bloc/task_event.dart';
+import '../../features/tasks/data/repositories/task_repository.dart';
+import '../../features/tasks/services/sync_service.dart';
 import '../../features/profile/presentation/pages/profile_page.dart';
-import '../../features/profile/presentation/pages/edit_profile_page.dart';
-import '../../features/profile/presentation/pages/settings_page.dart';
 import '../../features/profile/presentation/pages/theme_selection_page.dart';
-import '../../features/profile/presentation/pages/language_selection_page.dart';
-import '../../features/search/presentation/pages/search_page.dart';
 import '../../main.dart';
 import 'route_constants.dart';
 import 'widgets/bottom_navigation_shell.dart';
@@ -33,6 +30,22 @@ class AppRouter {
   static final GoRouter router = GoRouter(
     initialLocation: RouteConstants.login,
     debugLogDiagnostics: true,
+    redirect: (context, state) {
+      final user = FirebaseAuth.instance.currentUser;
+      final isLoginRoute = state.matchedLocation == RouteConstants.login;
+
+      // Not logged in and trying to access protected route -> go to login
+      if (user == null && !isLoginRoute) {
+        return RouteConstants.login;
+      }
+
+      // Logged in and on login route -> go to tasks
+      if (user != null && isLoginRoute) {
+        return RouteConstants.tasks;
+      }
+
+      return null; // No redirect
+    },
 
     routes: [
       // Auth Shell Route - Groups all auth-related pages
@@ -48,46 +61,6 @@ class AppRouter {
             name: 'login',
             builder: (context, state) => const LoginPage(),
           ),
-          GoRoute(
-            path: RouteConstants.signup,
-            name: 'signup',
-            builder: (context, state) => const SignupPage(),
-          ),
-          GoRoute(
-            path: RouteConstants.forgotPassword,
-            name: 'forgot-password',
-            builder: (context, state) => const ForgotPasswordPage(),
-          ),
-          GoRoute(
-            path: RouteConstants.resetPassword,
-            name: 'reset-password',
-            builder: (context, state) => const ResetPasswordPage(),
-          ),
-        ],
-      ),
-
-      // Onboarding Shell Route - Groups all onboarding pages
-      ShellRoute(
-        builder: (context, state, child) {
-          // You can add common onboarding shell UI here
-          return child;
-        },
-        routes: [
-          GoRoute(
-            path: RouteConstants.otpVerification,
-            name: 'otp-verification',
-            builder: (context, state) => const OtpVerificationPage(),
-          ),
-          GoRoute(
-            path: RouteConstants.profileCreation,
-            name: 'profile-creation',
-            builder: (context, state) => const ProfileCreationPage(),
-          ),
-          GoRoute(
-            path: RouteConstants.permissions,
-            name: 'permissions',
-            builder: (context, state) => const PermissionsPage(),
-          ),
         ],
       ),
 
@@ -100,39 +73,48 @@ class AppRouter {
           StatefulShellBranch(
             routes: [
               GoRoute(
-                path: RouteConstants.home,
-                name: 'home',
-                builder: (context, state) => const HomePage(),
+                path: RouteConstants.tasks,
+                name: 'tasks',
+                builder: (context, state) => const TaskListPage(),
                 routes: [
                   GoRoute(
-                    path: RouteConstants.dashboard,
-                    name: 'dashboard',
-                    builder: (context, state) => const DashboardPage(),
+                    path: 'create',
+                    name: 'task-create',
+                    builder: (context, state) {
+                      final userId =
+                          Get.find<AuthController>().firebaseUser.value?.uid ??
+                          '';
+                      return BlocProvider(
+                        create: (context) => TaskBloc(
+                          taskRepository: TaskRepository(database: objectBox),
+                          syncService: SyncService(
+                            taskRepository: TaskRepository(database: objectBox),
+                          ),
+                        )..add(LoadTasksEvent(userId: userId)),
+                        child: const TaskCreatePage(),
+                      );
+                    },
                   ),
                   GoRoute(
-                    path: RouteConstants.analytics,
-                    name: 'analytics',
-                    builder: (context, state) => const AnalyticsPage(),
+                    path: 'edit/:taskId',
+                    name: 'task-edit',
+                    builder: (context, state) {
+                      final taskId = state.pathParameters['taskId']!;
+                      final userId =
+                          Get.find<AuthController>().firebaseUser.value?.uid ??
+                          '';
+                      return BlocProvider(
+                        create: (context) => TaskBloc(
+                          taskRepository: TaskRepository(database: objectBox),
+                          syncService: SyncService(
+                            taskRepository: TaskRepository(database: objectBox),
+                          ),
+                        )..add(LoadTasksEvent(userId: userId)),
+                        child: TaskEditPage(taskId: taskId),
+                      );
+                    },
                   ),
                 ],
-              ),
-            ],
-          ),
-          StatefulShellBranch(
-            routes: [
-              GoRoute(
-                path: RouteConstants.weather,
-                name: 'weather',
-                builder: (context, state) => WeatherScreen(database: objectBox),
-              ),
-            ],
-          ),
-          StatefulShellBranch(
-            routes: [
-              GoRoute(
-                path: RouteConstants.search,
-                name: 'search',
-                builder: (context, state) => const SearchPage(),
               ),
             ],
           ),
@@ -144,24 +126,9 @@ class AppRouter {
                 builder: (context, state) => const ProfilePage(),
                 routes: [
                   GoRoute(
-                    path: RouteConstants.editProfile,
-                    name: 'edit-profile',
-                    builder: (context, state) => const EditProfilePage(),
-                  ),
-                  GoRoute(
-                    path: RouteConstants.settings,
-                    name: 'settings',
-                    builder: (context, state) => const SettingsPage(),
-                  ),
-                  GoRoute(
                     path: RouteConstants.themeSelection,
                     name: 'theme-selection',
                     builder: (context, state) => const ThemeSelectionPage(),
-                  ),
-                  GoRoute(
-                    path: RouteConstants.languageSelection,
-                    name: 'language-selection',
-                    builder: (context, state) => const LanguageSelectionPage(),
                   ),
                 ],
               ),
